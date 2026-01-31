@@ -1,5 +1,21 @@
 #!/bin/bash
 
+################################
+#
+# Written by: Joe @TheSmartWorkshop
+# 
+# This bash script is designed to identify the current running Docker container
+# within a Docker Swarm deployment, and what Docker host it is running on, for a
+# deployed Plex Media Server. Once identified, it uses the Docker API to connect to the
+# running container, and run a SQLite integrity check on the Plex database.
+# This is an extra failsafe and validation helpful when running Plex on an NFS-mounted
+# volume, where historically a misconfiguration can lead to a corrupted databse quickly.
+# Using a properly configured NFSv4 mount, this is very safe and adds a lot of flexibility
+# in a Docker Swarm cluster, and this script gives the operator further confidence in the
+# long-term integrity of the database.
+#
+################################
+
 # Check if docker-compose is installed
 if ! command -v docker &> /dev/null; then
   echo "Error: Docker is not installed."
