@@ -28,10 +28,10 @@ deployment_name="$1"
 # Check if deployment name is provided. If not, we assume the stack name is just "plex"
 if [ -z "$deployment_name" ]; then
   deployment_name="plex" # Force default if no argument is given
-#  echo "Usage: $0 <deployment_name>"
-#  echo "Using default deployment name: $deployment_name"
-#else
-#  echo "Using deployment name: $deployment_name"
+  echo "Usage: $0 <deployment_name>"
+  echo "Using default deployment name: $deployment_name"
+else
+  echo "Using deployment name: $deployment_name"
 fi
 
 # Get the container name and node for running containers
@@ -46,11 +46,11 @@ if [ -z "$container_name" ] || [ -z "$node_name" ]; then
 fi
 
 # Print the container name and node
-#echo "Container name for running deployment '$deployment_name': $stack_name.$container_name"
-#echo "Running on node: $node_name"
+echo "Container name for running deployment '$deployment_name': $stack_name.$container_name"
+echo "Running on node: $node_name"
 
 ## This requires 2 things: hostnames must be resolvable, and hosts must have their Docker API accessable remotely, ie ExecStart -H tcp://0.0.0.0:2375
-#echo "Running Plex SQLite DB integrity Check..."
+echo "Running Plex SQLite DB integrity Check..."
 response=$(docker -H tcp://$node_name:2375 exec -it $stack_name.$container_name /usr/lib/plexmediaserver/Plex\ SQLite /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db "PRAGMA integrity_check;")
 
 #Check the response and return the appropreate exit code
