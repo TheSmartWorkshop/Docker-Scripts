@@ -23,16 +23,16 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Default deployment name
-deployment_name="plex"
+#deployment_name="plex"
 
 # Get the deployment name from the command line argument
 deployment_name="$1"
 
 # Check if deployment name is provided. If not, we assume the stack name is just "plex"
 if [ -z "$deployment_name" ]; then
+  deployment_name="plex" # Force default if no argument is given
   echo "Usage: $0 <deployment_name>"
   echo "Using default deployment name: $deployment_name"
-  deployment_name="plex" # Force default if no argument is given
 else
   echo "Using deployment name: $deployment_name"
 fi
