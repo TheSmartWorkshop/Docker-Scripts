@@ -2,6 +2,7 @@ A collection of scripts helpful for Docker environments!
 
 # Plex DB integrity check
 `plex-db-healthcheck.sh`
+
 This script finds a running Plex Media Server container deployed to a Docker Swarm cluster, and identifies th full container name with the randomized ID, as well as which host it is currently running on. Next it uses the Docker API to run a SQLite database integrity check, and returns the result. A standared `exit 0` response is generated from SQLite responding with `ok`, and any other response is considered an error, and the script returns `exit 1`. 
 
 The script assumes your Plex stack deployment is named `plex` (ie: `docker stack deploy -c docker-compose.yml plex`) however if it is named anything else, you can pass that as an attribute in the script, (ie: `./plex-db-healthcheck.sh myActualPlexStackName`)
@@ -14,7 +15,7 @@ To run this script successfully, you need two things in your Docker Swarm cluste
 In typical Debian-based systemd deployments, this will work
 
 * Edit the `docker.service` file:
-`sudo nano /lib/systemd/system/docker.service`
+  `sudo nano /lib/systemd/system/docker.service`
 
 * Find the `ExecStart` line and add the external listener:
 `-H tcp://0.0.0.0:2375`
