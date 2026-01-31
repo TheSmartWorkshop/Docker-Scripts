@@ -51,8 +51,8 @@ echo "Running Plex SQLite DB integrity Check..."
 response=$(docker -H tcp://$node_name:2375 exec -it $stack_name.$container_name /usr/lib/plexmediaserver/Plex\ SQLite /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db "PRAGMA integrity_check;")
 
 #Check the response and return the appropreate exit code
-if echo $response | grep "ok"
-; then
+if echo $response | grep "ok"; 
+then
   exit 0
 else
   exit 1
