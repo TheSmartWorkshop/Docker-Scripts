@@ -48,4 +48,11 @@ echo "Running on node: $node_name"
 
 ## This requires 2 things: hostnames must be resolvable, and hosts must have their Docker API accessable remotely, ie ExecStart -H tcp://0.0.0.0:2375
 echo "Running Plex SQLite DB integrity Check..."
-docker -H tcp://$node_name:2375 exec -it $stack_name.$container_name /usr/lib/plexmediaserver/Plex\ SQLite /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db "PRAGMA integrity_check;"
+response=$(docker -H tcp://$node_name:2375 exec -it $stack_name.$container_name /usr/lib/plexmediaserver/Plex\ SQLite /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db "PRAGMA integrity_check;")
+
+#Check the response and return the appropreate exit code
+if [["$response" == "ok" ]]; then
+  exit 0
+else
+  exit 1
+fi
