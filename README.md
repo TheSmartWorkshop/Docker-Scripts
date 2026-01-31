@@ -7,11 +7,18 @@ This script finds a running Plex Media Server container deployed to a Docker Swa
 
 The script assumes your Plex stack deployment is named `plex` (ie: `docker stack deploy -c docker-compose.yml plex`) however if it is named anything else, you can pass that as an attribute in the script, (ie: `./plex-db-healthcheck.sh myActualPlexStackName`)
 
+## Installation
+* Pull `plex-db-healthcheck.sh` file down or clone the repo fully (ie: `git clone https://github.com/TheSmartWorkshop/Docker-Scripts.git`)
+* Make the script executable:  
+`chmod +x plex-db-healthcheck.sh`
+* Make sure you review the prerequisites below!
+
 ## Prerequisites
 To run this script successfully, you need two things in your Docker Swarm cluster environment:
 * All of your docker node hostnames (ie: `docker nods ls`) need to be DNS-resolvable. Make static DNS entries, `/etc/hosts` entries, whatever you like. 
 * All nodes in your cluster need to have the Docker API accessible externally:
 
+### Docker API
 In typical Debian-based systemd deployments, this will work
 
 * Edit the `docker.service` file:  
