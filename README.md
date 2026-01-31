@@ -14,18 +14,18 @@ To run this script successfully, you need two things in your Docker Swarm cluste
 
 In typical Debian-based systemd deployments, this will work
 
-* Edit the `docker.service` file:
-  `sudo nano /lib/systemd/system/docker.service`
+* Edit the `docker.service` file:  
+`sudo nano /lib/systemd/system/docker.service`
 
-* Find the `ExecStart` line and add the external listener:
+* Find the `ExecStart` line and add the external listener:  
 `-H tcp://0.0.0.0:2375`
 
-* Your ExecStart line should look something like this now:
+* Your ExecStart line should look something like this now:  
 `ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 --containerd=/run/containerd/containerd/sock`
 
-* Save and exit the file, then reload systemctl daemon so it knows about the change:
+* Save and exit the file, then reload systemctl daemon so it knows about the change:  
 `sudo systemctl daemon-reload`
-* Then restart docker:
-`sudo systemctl restart docker.service`
+* Then restart docker:  
+`sudo systemctl restart docker.service`  
 
 You should be able to connect to the docker API from other hosts on your network now.
