@@ -22,7 +22,7 @@ In typical Debian-based systemd deployments, this will work
 * Your ExecStart line should look something like this now:
 `ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 --containerd=/run/containerd/containerd/sock`
 
-*Save and exit the file, then reload systemctl daemon so it knows about the change:
+* Save and exit the file, then reload systemctl daemon so it knows about the change:
 `sudo systemctl daemon-reload`
 * Then restart docker:
 `sudo systemctl restart docker.service`
