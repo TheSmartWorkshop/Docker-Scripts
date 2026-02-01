@@ -11,7 +11,7 @@ The script assumes your Plex stack deployment is named `plex` (ie: `docker stack
 * Pull `plex-db-healthcheck.sh` file down or clone the repo fully (ie: `git clone https://github.com/TheSmartWorkshop/Docker-Scripts.git`)
 * Make the script executable:  
 `chmod +x plex-db-healthcheck.sh`
-* Make sure you review the prerequisites below
+* Make sure you review the prerequisites:
 
 ## Prerequisites
 To run this script successfully, you need two things in your Docker Swarm cluster environment:
