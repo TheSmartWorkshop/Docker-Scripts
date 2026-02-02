@@ -3,16 +3,22 @@
 ################################
 #
 # Written by: Joe @TheSmartWorkshop
+#
+# DISCLAIMER!! 
+# Running Plex in particular on NFS is not supported, and generally not a good idea. I built this
+# as a proof of concept, chasing the thought of "yeah but can it be done?". And it can.
+# But it's not a good idea, and long-term, I would expect the failure rate on the database
+# will be high, performance will be low, and not worth the gains in cluster placement.
+# The script itself is valuable, in identifying the container name and node the container is running
+# on in a Docker Swarm cluster for many other projects. 
+# /Disclaimer
 # 
 # This bash script is designed to identify the current running Docker container
 # within a Docker Swarm deployment, and what Docker host it is running on, for a
 # deployed Plex Media Server. Once identified, it uses the Docker API to connect to the
 # running container, and run a SQLite integrity check on the Plex database.
-# This is an extra failsafe and validation helpful when running Plex on an NFS-mounted
-# volume, where historically a misconfiguration can lead to a corrupted databse quickly.
-# Using a properly configured NFSv4 mount, this is very safe and adds a lot of flexibility
-# in a Docker Swarm cluster, and this script gives the operator further confidence in the
-# long-term integrity of the database.
+# You can adjust the actual "exec" part of the script to perform the action in the container you
+# need.
 #
 ################################
 
